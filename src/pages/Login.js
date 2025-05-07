@@ -29,8 +29,7 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you would typically make an API call to authenticate the user
-    // For now, we'll just simulate a successful login
+    // simulated not acutally happening
     if (formData.email && formData.password) {
       // Store user data in localStorage (in a real app, you'd use a proper auth system)
       localStorage.setItem('user', JSON.stringify({ email: formData.email }));

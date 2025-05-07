@@ -31,9 +31,7 @@ const featuredProducts = [
   },
   {
     id: 3,
-    name: 'Coffee Table',
-    price: 299.99,
-    image: '/assets/coffee-table.jpg',
+   .jpg',
   },
 ];
 
