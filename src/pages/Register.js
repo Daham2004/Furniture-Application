@@ -44,7 +44,7 @@ const Register = () => {
       return;
     }
 
-    //in ths assignment were not using backend but we are simulating a registration process
+    // Here you would typically make an API call to register the user
     // For now, we'll just simulate a successful registration
     const userData = {
       firstName: formData.firstName,
