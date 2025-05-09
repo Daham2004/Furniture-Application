@@ -1,0 +1,78 @@
+/* Color scheme customization */
+
+:root {
+    /* Primary colors */
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    
+    /* Background colors */
+    --bg-light: #ecf0f1;
+    --bg-dark: #2c3e50;
+    
+    /* Text colors */
+    --text-light: #ffffff;
+    --text-dark: #2c3e50;
+    
+    /* UI element colors */
+    --button-primary: #3498db;
+    --button-secondary: #95a5a6;
+    --button-hover: #2980b9;
+}
+
+/* Apply colors to UI elements */
+.sidebar {
+    background-color: var(--bg-light);
+    border-right: 2px solid var(--primary-color);
+}
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+#main-controls .btn,
+#camera-controls .btn,
+#floorplanner-controls .btn {
+    background-color: var(--button-primary);
+    border-color: var(--button-hover);
+    color: var(--text-light);
+}
+
+#main-controls .btn:hover,
+#camera-controls .btn:hover,
+#floorplanner-controls .btn:hover {
+    background-color: var(--button-hover);
+}
+
+#add-items {
+    background-color: var(--bg-light);
+}
+
+.add-item {
+    border: 1px solid var(--primary-color);
+}
+
+.add-item:hover {
+    background-color: var(--bg-light);
+    border-color: var(--accent-color);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--button-hover);
+} 

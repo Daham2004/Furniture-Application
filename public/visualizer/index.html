@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blueprint 3D - Furniture Design Studio</title>
+
+    <!-- CSS Files -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/example.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/colors.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/color-controls.css">
+
+    <!-- Core Libraries -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/three.min.js"></script>
+    <script src="js/blueprint3d.js"></script>
+
+    <!-- Application Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/design-manager.js"></script>
+    <script src="js/items.js"></script>
+    <script src="js/custom-items.js"></script>
+    <script src="js/example.js"></script>
+    <script src="js/color-manager.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row main-row">
+        <!-- Left Column -->
+        <div class="col-xs-3 sidebar">
+          <!-- User Info Section (will be populated by auth.js) -->
+          <div class="user-info" style="display: none;">
+            <p>Welcome, <span id="user-name"></span></p>
+          </div>
+
+          <!-- Main Navigation -->
+          <ul class="nav nav-sidebar">
+            <li id="floorplan_tab"><a href="#">
+              2D Room Editor
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="design_tab"><a href="#">
+              3D Designer
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+            <li id="items_tab"><a href="#">
+              Add Furniture
+              <span class="glyphicon glyphicon-chevron-right pull-right"></span>
+            </a></li>
+          </ul>
+          <hr />
+
+          <!-- Context Menu -->
+          <div id="context-menu">
+            <div style="margin: 0 20px">
+              <span id="context-menu-name" class="lead"></span>
+              <br /><br />
+              <button class="btn btn-block btn-danger" id="context-menu-delete">
+                <span class="glyphicon glyphicon-trash"></span> 
+                Delete Item
+              </button>
+            <br />
+            <div class="panel panel-default">
+              <div class="panel-heading">Adjust Size</div>
+              <div class="panel-body" style="color: #333333">
+
+                <div class="form form-horizontal" class="lead">
+                  <div class="form-group">
+                    <label class="col-sm-5 control-label">
+                       Width
+                    </label>
+                    <div class="col-sm-6">
+                      <input type="number" class="form-control" id="item-width">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-5 control-label">
+                      Depth 
+                    </label>
+                    <div class="col-sm-6">
+                      <input type="number" class="form-control" id="item-depth">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-5 control-label">
+                      Height
+                    </label>
+                    <div class="col-sm-6">
+                      <input type="number" class="form-control" id="item-height">
+                    </div>
+                  </div>
+                </div>
+                <small><span class="text-muted">Measurements in inches.</span></small>
+              </div>
+            </div>
+
+            <label><input type="checkbox" id="fixed" /> Lock in place</label>
+            <br /><br />
+            <div class="form-group">
+              <label for="shade-slider">Shade</label>
+              <input type="range" min="0" max="2" step="0.01" value="1" id="shade-slider">
+              <small id="shade-value" class="text-muted">Normal</small>
+            </div>
+            </div>
+          </div>
+
+          <!-- Floor textures -->
+          <div id="floorTexturesDiv" style="display:none; padding: 0 20px">
+            <div class="panel panel-default texture-panel">
+              <div class="panel-heading">Select Texture</div>
+              <div class="panel-body" style="color: #333333">
+                <div class="col-sm-6" style="padding: 3px">
+                  <a href="#" class="thumbnail texture-select-thumbnail" texture-url="rooms/textures/light_fine_wood.png" texture-stretch="false" texture-scale="300">
+                    <img alt="Light Fine Wood" src="rooms/thumbnails/thumbnail_light_fine_wood.jpg" />
+                  </a>
+                </div>
+                <div class="col-sm-6" style="padding: 3px">
+                  <a href="#" class="thumbnail texture-select-thumbnail" texture-url="rooms/textures/hardwood.png" texture-stretch="false" texture-scale="300">
+                    <img alt="Hardwood" src="rooms/thumbnails/thumbnail_light_brick.jpg" />
+                  </a>
+                </div>
+                              </div>
+            </div>
+          </div>
+
+          <!-- Wall Textures -->
+          <div id="wallTextures" style="display:none; padding: 0 20px">
+            <div class="panel panel-default texture-panel">
+              <div class="panel-heading">Select Texture</div>
+              <div class="panel-body" style="color: #333333">
+                <div class="col-sm-6" style="padding: 3px">
+                  <a href="#" class="thumbnail texture-select-thumbnail" texture-url="rooms/textures/marbletiles.png" texture-stretch="false" texture-scale="300">
+                    <img alt="Marble Tiles" src="rooms/thumbnails/floor_sandstone-256x256.png" />
+                  </a>
+                </div>
+                <div class="col-sm-6" style="padding: 3px">
+                  <a href="#" class="thumbnail texture-select-thumbnail" texture-url="rooms/textures/wallmap_yellow.png" texture-stretch="true" texture-scale="">
+                    <img alt="Wallmap Yellow" src="rooms/thumbnails/floor_blue_carpet-256x256.png" />
+                  </a>
+                </div>
+               
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-xs-9 main">
+
+          <!-- 3D Viewer -->
+          <div id="viewer">
+
+            <div id="main-controls">
+              <a href="#" class="btn btn-default btn-sm" id="new">
+                Reset
+              </a>
+              <a href="#" class="btn btn-default btn-sm" id="saveFile">
+                Save Design
+              </a>
+              <label class="btn btn-default btn-sm" style="margin-bottom:0;">
+                <input type="file" class="hidden-input" id="loadFile" style="display:none;">
+                Load Design
+              </label>
+            </div>
+
+            <div id="loading-modal">
+              <h1>Loading...</h1>  
+            </div>
+          </div>
+
+          <!-- 2D Floorplanner -->
+          <div id="floorplanner">
+            <canvas id="floorplanner-canvas"></canvas>
+            <div id="floorplanner-controls" style="background: #f8fafc; border-radius: 12px; padding: 18px 24px; margin-bottom: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #e0e7ef;">
+              <div style="font-weight: 600; font-size: 1.1em; margin-bottom: 10px; color: #2563eb;">
+                2D Layout Tools
+              </div>
+              <div class="btn-group" style="gap: 10px;">
+                <button id="move" class="btn btn-outline-primary btn-sm" title="Drag to move walls">
+                  <span class="glyphicon glyphicon-move"></span> Move
+                </button>
+                <button id="draw" class="btn btn-outline-success btn-sm" title="Draw new walls">
+                  <span class="glyphicon glyphicon-pencil"></span> Add Wall
+                </button>
+                <button id="delete" class="btn btn-outline-danger btn-sm" title="Delete selected wall">
+                  <span class="glyphicon glyphicon-trash"></span> Remove
+                </button>
+                <button id="update-floorplan" class="btn btn-primary btn-sm" style="margin-left: 20px;" title="Finish editing">
+                  <span class="glyphicon glyphicon-ok"></span> Finish Editing
+                </button>
+              </div>
+              <div style="margin-top: 10px; color: #64748b; font-size: 0.95em;">
+                <span class="glyphicon glyphicon-info-sign"></span> Tip: Press <b>Esc</b> to stop drawing walls.
+              </div>
+            </div>
+          </div>
+
+          <!-- Add Items -->
+          <div id="add-items">
+            <div class="row" id="items-wrapper">
+              <!-- Items added here by items.js -->
+            </div>
+          </div>
+      
+        </div>
+        <!-- End Right Column -->
+      </div>
+    </div>
+  </body>
+</html>

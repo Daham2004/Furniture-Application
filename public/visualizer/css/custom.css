@@ -1,0 +1,51 @@
+/* Custom styles for Blueprint3D */
+
+/* Change the sidebar color */
+.sidebar {
+    background-color: #f8f9fa;
+    border-right: 2px solid #e9ecef;
+}
+
+/* Change the active tab color */
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+    background-color: #007bff;
+}
+
+/* Customize the main content area */
+.main {
+    background-color: #ffffff;
+}
+
+/* Customize the loading modal */
+#loading-modal {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+#loading-modal h1 {
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Customize the controls */
+#main-controls .btn,
+#camera-controls .btn,
+#floorplanner-controls .btn {
+    background-color: #007bff;
+    border-color: #0056b3;
+    color: white;
+}
+
+/* Customize the add items section */
+#add-items {
+    background-color: #f8f9fa;
+}
+
+.add-item {
+    transition: transform 0.2s;
+}
+
+.add-item:hover {
+    transform: scale(1.05);
+} 

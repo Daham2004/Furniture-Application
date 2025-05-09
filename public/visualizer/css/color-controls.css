@@ -1,0 +1,76 @@
+.color-controls {
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 5px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+}
+
+.color-controls h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.color-picker-group {
+    margin-bottom: 15px;
+}
+
+.color-picker-group h5 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.color-picker {
+    width: 100%;
+    height: 40px;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.color-presets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.color-preset {
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    transition: transform 0.2s;
+}
+
+.color-preset:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.color-actions {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.color-actions button {
+    flex: 1;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+/* Make sure the color controls are visible in the sidebar */
+.sidebar .color-controls {
+    position: relative;
+    z-index: 1000;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+} 

@@ -1,0 +1,279 @@
+/*
+ * General Formatting
+ */
+
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+div {
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Sidebar
+ */
+
+.main-row {
+  padding: 0;
+}
+
+.sidebar {
+  padding: 20px;
+  overflow-x: hidden;
+  overflow-y: auto; 
+  border-right: 1px solid #eee;
+}
+
+.nav-sidebar {
+  margin-right: -21px; /* 20px padding + 1px border */
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+.nav-sidebar > li > a {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #428bca;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 0;
+}
+
+/*
+ * "Loading" modal
+ */
+
+#loading-modal {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  background-color: rgba(50, 50, 50, 0.9);
+}
+
+#loading-modal  h1 {
+  text-align: center; 
+  margin-top: 30%;
+  color: #fff;
+}
+
+/*
+ * Design
+ */
+
+#viewer {
+  display: none;
+}
+
+#floorplanner {
+  display: none;
+}
+
+#add-items {
+  display: none;
+  padding: 20px;
+  overflow-y: auto; 
+}
+
+#main-controls {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 0;  
+}
+
+#camera-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 0;
+  padding: 0 20px;  
+  text-align: right;
+}
+
+#floorplanner-controls {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 20px 0;
+  padding: 0 20px; 
+  width: 100%;
+}
+
+#draw-walls-hint {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.50);
+  color: #ffffff;
+  padding: 5px 10px;
+  z-index: 10;
+  display: none;
+}
+
+.add-item {
+  cursor: pointer;
+}
+
+.btn-file {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  cursor: inherit;
+  display: block;
+}
+
+/* Add Furniture Grid Improvements */
+#add-items .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: flex-start;
+}
+
+#add-items .col-sm-4 {
+  flex: 1 1 300px;
+  max-width: 340px;
+  min-width: 220px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+#add-items .thumbnail.add-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 16px 8px 12px 8px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  transition: box-shadow 0.2s;
+}
+
+#add-items .thumbnail.add-item:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  border-color: #2563eb;
+}
+
+#add-items .thumbnail.add-item img {
+  max-width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  background: #f8fafc;
+}
+
+#add-items .thumbnail.add-item {
+  font-size: 1.08rem;
+  color: #222;
+  text-align: center;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 24px 12px 18px 12px;
+}
+
+/* Texture Selector Panel Styling */
+.texture-panel {
+  border-radius: 18px !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  border: 1px solid #e0e0e0;
+  overflow: hidden;
+  margin-bottom: 18px;
+}
+
+.texture-panel .panel-heading {
+  border-radius: 18px 18px 0 0 !important;
+  font-weight: 600;
+  font-size: 1.1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.texture-panel .panel-body {
+  background: #fff;
+  border-radius: 0 0 18px 18px;
+  padding: 18px 12px 12px 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-start;
+}
+
+.texture-panel .col-sm-6 {
+  flex: 1 1 120px;
+  max-width: 140px;
+  min-width: 100px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+}
+
+.texture-panel .thumbnail.texture-select-thumbnail {
+  border-radius: 12px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid #e0e0e0;
+  background: #f8fafc;
+  padding: 8px 4px 6px 4px;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.texture-panel .thumbnail.texture-select-thumbnail:hover {
+  box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+  border-color: #2563eb;
+}
+
+.texture-panel .thumbnail.texture-select-thumbnail img {
+  max-width: 100%;
+  max-height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 6px;
+}
