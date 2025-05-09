@@ -17,49 +17,29 @@ import {
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useNavigate } from 'react-router-dom';
-
-// Mock cart data - In a real application, this would come from a state management solution
-const initialCartItems = [
-  {
-    id: 1,
-    name: 'Modern Sofa',
-    price: 899.99,
-    quantity: 1,
-    image: '/assets/sofa.jpg',
-  },
-  {
-    id: 2,
-    name: 'Dining Table',
-    price: 599.99,
-    quantity: 1,
-    image: '/assets/dining-table.jpg',
-  },
-];
+import { useCart } from '../utils/CartContext';
 
 // Main Cart component that displays and manages the shopping cart
 const Cart = () => {
-  // State management for cart items
-  const [cartItems, setCartItems] = useState(initialCartItems);
+  const { cart, removeFromCart, addToCart } = useCart();
   const navigate = useNavigate();
 
   // Handle quantity changes for cart items
   const handleQuantityChange = (id, newQuantity) => {
     if (newQuantity < 1) return;
-    setCartItems(
-      cartItems.map((item) =>
-        item.id === id ? { ...item, quantity: newQuantity } : item
-      )
-    );
-  };
-
-  // Handle removal of items from cart
-  const handleRemoveItem = (id) => {
-    setCartItems(cartItems.filter((item) => item.id !== id));
+    const item = cart.find((item) => item.id === id);
+    if (!item) return;
+    const diff = newQuantity - item.quantity;
+    if (diff > 0) {
+      for (let i = 0; i < diff; i++) addToCart(item);
+    } else if (diff < 0) {
+      for (let i = 0; i < -diff; i++) removeFromCart(id);
+    }
   };
 
   // Calculate the subtotal of all items in the cart
   const calculateSubtotal = () => {
-    return cartItems.reduce(
+    return cart.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
@@ -81,7 +61,7 @@ const Cart = () => {
         Shopping Cart
       </Typography>
       {/* Display empty cart message if no items */}
-      {cartItems.length === 0 ? (
+      {cart.length === 0 ? (
         <Box sx={{ textAlign: 'center', py: 4 }}>
           <Typography variant="h6" gutterBottom>
             Your cart is empty
@@ -109,7 +89,7 @@ const Cart = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {cartItems.map((item) => (
+                {cart.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell>
                       <Box sx={{ display: 'flex', alignItems: 'center' }}>
@@ -144,7 +124,7 @@ const Cart = () => {
                     <TableCell align="right">
                       <IconButton
                         color="error"
-                        onClick={() => handleRemoveItem(item.id)}
+                        onClick={() => removeFromCart(item.id)}
                       >
                         <DeleteIcon />
                       </IconButton>

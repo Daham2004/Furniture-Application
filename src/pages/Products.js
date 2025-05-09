@@ -16,58 +16,8 @@ import {
   Pagination,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-
-// Mock data for products - In a real application, this would come from an API
-const products = [
-  {
-    id: 1,
-    name: 'Modern Sofa',
-    price: 899.99,
-    category: 'Living Room',
-    image: '/assets/sofa.jpg',
-    description: 'Comfortable modern sofa with premium fabric',
-  },
-  {
-    id: 2,
-    name: 'Dining Table',
-    price: 599.99,
-    category: 'Dining Room',
-    image: '/assets/dining-table.jpg',
-    description: 'Elegant dining table for 6 people',
-  },
-  {
-    id: 3,
-    name: 'Coffee Table',
-    price: 299.99,
-    category: 'Living Room',
-    image: '/assets/coffee-table.jpg',
-    description: 'Modern coffee table with glass top',
-  },
-  {
-    id: 4,
-    name: 'Bed Frame',
-    price: 799.99,
-    category: 'Bedroom',
-    image: '/assets/bed.jpg',
-    description: 'King size bed frame with storage',
-  },
-  {
-    id: 5,
-    name: 'Desk',
-    price: 399.99,
-    category: 'Office',
-    image: '/assets/desk.jpg',
-    description: 'Modern office desk with cable management',
-  },
-  {
-    id: 6,
-    name: 'Bookshelf',
-    price: 249.99,
-    category: 'Living Room',
-    image: '/assets/bookshelf.jpg',
-    description: 'Tall bookshelf with multiple shelves',
-  },
-];
+import { useCart } from '../utils/CartContext';
+import { products } from '../utils/products';
 
 // Main Products component that displays the product catalog
 const Products = () => {
@@ -76,6 +26,7 @@ const Products = () => {
   const [category, setCategory] = useState('all');
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   // Handle search input changes
   const handleSearch = (event) => {
@@ -186,7 +137,7 @@ const Products = () => {
                   fullWidth
                   onClick={(e) => {
                     e.stopPropagation();
-                    // Add to cart logic would be implemented here
+                    addToCart(product);
                   }}
                 >
                   Add to Cart

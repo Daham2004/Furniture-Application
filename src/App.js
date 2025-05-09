@@ -10,8 +10,12 @@ import ProductDetail from './pages/ProductDetail';
 import RoomDesigner from './pages/RoomDesigner';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
-import Login from './pages/Login';
-import Register from './pages/Register';
+import Login from './components/Login';
+import Register from './components/Register';
+import ProtectedRoute from './components/ProtectedRoute';
+import { AuthProvider } from './utils/AuthContext';
+import { CartProvider } from './utils/CartContext';
+import OrderConfirmation from './pages/OrderConfirmation';
 
 const theme = createTheme({
   palette: {
@@ -98,24 +102,36 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
-        <div className="app">
-          <Navbar />
-          <main style={{ minHeight: 'calc(100vh - 64px - 200px)', padding: '20px' }}>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/products/:id" element={<ProductDetail />} />
-              <Route path="/room-designer" element={<RoomDesigner />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/checkout" element={<Checkout />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Routes>
-          </main>
-          <Footer />
-        </div>
-      </Router>
+      <AuthProvider>
+        <CartProvider>
+          <Router>
+            <div className="app">
+              <Navbar />
+              <main style={{ minHeight: 'calc(100vh - 64px - 200px)', padding: '20px' }}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/products/:id" element={<ProductDetail />} />
+                  <Route 
+                    path="/room-designer" 
+                    element={
+                      <ProtectedRoute>
+                        <RoomDesigner />
+                      </ProtectedRoute>
+                    } 
+                  />
+                  <Route path="/cart" element={<Cart />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/register" element={<Register />} />
+                  <Route path="/order-confirmation" element={<OrderConfirmation />} />
+                </Routes>
+              </main>
+              <Footer />
+            </div>
+          </Router>
+        </CartProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

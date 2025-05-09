@@ -21,19 +21,19 @@ const featuredProducts = [
     id: 1,
     name: 'Modern Sofa',
     price: 899.99,
-    image: '/assets/sofa.jpg',
+    image: '/images/products/grey sofa.png',
   },
   {
     id: 2,
     name: 'Dining Table',
     price: 599.99,
-    image: '/assets/dining-table.jpg',
+    image: '/images/products/round table.png',
   },
   {
     id: 3,
     name: 'Coffee Table',
     price: 299.99,
-    image: '/assets/coffee-table.jpg',
+    image: '/images/products/table drawer.png',
   },
 ];
 
@@ -51,7 +51,7 @@ const Home = () => {
         animate={{ opacity: 1 }}
         transition={{ duration: 1 }}
         sx={{
-          backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/assets/hero-bg.jpg)',
+          backgroundImage: 'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(/images/banner.jpeg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundAttachment: 'fixed',
@@ -318,38 +318,6 @@ const Home = () => {
                 >
                   Try Room Designer
                 </Button>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Box
-                  component={motion.div}
-                  whileHover={{ scale: 1.02 }}
-                  sx={{
-                    position: 'relative',
-                    borderRadius: '20px',
-                    overflow: 'hidden',
-                    boxShadow: '0 10px 30px rgba(0,0,0,0.2)',
-                    '&::before': {
-                      content: '""',
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: 'linear-gradient(45deg, rgba(0,0,0,0.1), transparent)',
-                    },
-                  }}
-                >
-                  <Box
-                    component="img"
-                    src="/assets/room-designer-preview.jpg"
-                    alt="Room Designer Preview"
-                    sx={{
-                      width: '100%',
-                      display: 'block',
-                      transition: 'transform 0.3s ease',
-                    }}
-                  />
-                </Box>
               </Grid>
             </Grid>
           </Box>
