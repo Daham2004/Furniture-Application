@@ -11,4 +11,7 @@ To get started with the project, clone the repository and install the dependenci
 ```bash
 npm install
 
+```
+to start the application use:
+```bash
 npm run start
