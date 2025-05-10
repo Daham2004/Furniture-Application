@@ -9,7 +9,7 @@
 module BP3D.Model {
   /** The default wall texture. */
   const defaultWallTexture = {
-    url: "rooms/textures/wallmap.png",
+    url: "rooms/textures/redwall.png",
     stretch: true,
     scale: 0
   }

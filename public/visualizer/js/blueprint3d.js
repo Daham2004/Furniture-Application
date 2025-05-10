@@ -1266,7 +1266,7 @@ var BP3D;
     (function (Model) {
         /** The default wall texture. */
         var defaultWallTexture = {
-            url: "rooms/textures/wallmap.png",
+            url: "rooms/textures/redwall.png",
             stretch: true,
             scale: 0
         };
@@ -1431,7 +1431,7 @@ var BP3D;
     (function (Model) {
         /** Default texture to be used if nothing is provided. */
         var defaultRoomTexture = {
-            url: "rooms/textures/hardwood.png",
+            url: "rooms/textures/wood.png",
             scale: 400
         };
         /**

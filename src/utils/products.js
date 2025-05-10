@@ -10,7 +10,7 @@ export const products = [
       'Premium fabric upholstery',
       'Deep seating for maximum comfort',
       'Modern design with clean lines',
-      'Durable hardwood frame',
+      'Durable wood frame',
       'Easy to clean and maintain',
     ],
     dimensions: {
